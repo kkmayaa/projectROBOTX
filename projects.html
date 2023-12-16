@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RobotX Website</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #457d58;
+      padding: 20px;
+      color: #ffffff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    h1 {
+      color: #28a23f;
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .project {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .project-title {
+      font-size: 24px;
+      color: #457d58;
+      margin-bottom: 10px;
+    }
+
+    .project-description {
+      color: #333333;
+      margin-bottom: 20px;
+    }
+
+    .project-link {
+      display: inline-block;
+      background-color: #457d58;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .project-link:hover {
+      background-color: #3c6f4c;
+    }
+
+    .project-actions {
+      position: absolute;
+      bottom: 20px;
+      left: 150px;
+      display: flex;
+    }
+
+    .project-actions button {
+      border: none;
+      background: none;
+      color: #457d58;
+      font-size: 16px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      left: 100px;
+    }
+
+    .project-actions button:hover {
+      color: #28a23f;
+    }
+
+    .project-separator {
+      width: 2px;
+      height: 16px;
+      background-color: #457d58;
+      margin: 0 10px;
+      
+    }
+
+    .project-info {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      color: #457d58;
+      font-size: 14px;
+      text-align: right;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .project:hover .project-info {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">RobotX</div>
+      <ul>
+        <li><a href="profil.html">Профиль</a></li>
+        <li><a href="simulator.html">Старт</a></li>
+        <li><a href="projects.html">Менің жобаларым</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Менің жобаларым</h1>
+
+    <div class="project">
+      <h2 class="project-title">Проект 1</h2>
+      <p class="project-description"> Жазықтықтағы робот басқару</p>
+      <a href="#" class="project-link">Көбірек</a>
+      <div class="project-actions">
+        <button class="project-action-delete">Өшіру</button>
+        <div class="project-separator"></div>
+        <button class="project-action-select">Таңдау</button>
+        <div class="project-separator"></div>
+        <button class="project-action-rename">Атын өзгерту</button>
+      </div>
+      <div class="project-info">
+        <p class="project-size">Мөлшері: 10 MB</p>
+        <p class="project-modified">Соңғы өзгеріс: 01.07.2023 15:30</p>
+        <p class="project-created">Құрылған: 01.07.2023 10:15</p>
+      </div>
+    </div>
+<div class="project">
+      <h2 class="project-title">Проект 2</h2>
+      <p class="project-description">Виртуалды сайыс алаңы </p>
+      <a href="#" class="project-link">Көбірек</a>
+      <div class="project-actions">
+        <button class="project-action-delete">Өшіру</button>
+        <div class="project-separator"></div>
+        <button class="project-action-select">Таңдау</button>
+        <div class="project-separator"></div>
+        <button class="project-action-rename">Атын өзгерту</button>
+      </div>
+      <div class="project-info">
+        <p class="project-size">Мөлшері: 5 MB</p>
+        <p class="project-modified">Соңғы өзгеріс: 30.06.2023 09:45</p>
+        <p class="project-created">Құрылған: 29.06.2023 16:20</p>
+      </div>
+    </div>
+
+    <div class="project">
+      <h2 class="project-title">Проект 3</h2>
+      <p class="project-description">Инклюзивті бағдарламалау оқу платформасы</p>
+      <a href="#" class="project-link">Көбірек</a>
+      <div class="project-actions">
+        <button class="project-action-delete">0шіру</button>
+        <div class="project-separator"></div>
+        <button class="project-action-select">Таңдау</button>
+        <div class="project-separator"></div>
+        <button class="project-action-rename">Атын өзгерту</button>
+      </div>
+      <div class="project-info">
+        <p class="project-size"> Мөлшері: 8 MB</p>
+        <p class="project-modified">Соңғы өзгеріс: 28.06.2023 12:10</p>
+        <p class="project-created">Құрылған: 27.06.2023 18:40</p>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

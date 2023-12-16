@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RobotX Website</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600">
+  <style>
+    body {
+      background-color: #f9f9f9;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #457d58;
+      padding: 20px;
+      color: #ffffff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #28a23f;
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .frame {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .frame-text {
+      width: 200px;
+      text-align: center;
+      box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 10px;
+      margin: 30px;
+    }
+
+    .frame img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .frame-text h2 {
+      font-size: 24px;
+      color: #457d58;
+      margin-top: 10px;
+    }
+
+    .advantage-link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #28a23f;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .advantage-link:hover {
+      transform: translateX(5px);
+    }
+
+    .advantage-link-icon {
+      width: 16px;
+      height: 16px;
+      margin-left: 5px;
+      vertical-align: middle;
+      transition: transform 0.3s ease;
+    }
+
+    .advantage-link:hover .advantage-link-icon {
+      transform: translateX(5px);
+    }
+
+    .start-button {
+      background-color: #457d58;
+      color: #ffffff;
+      font-size: 24px;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 40px;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      transition: background-color 0.3s ease;
+    }
+
+    .start-button:hover {
+      background-color: #3c6f4c;
+    }
+
+    .start-text {
+      color: #457d58;
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    /* Added CSS */
+    .button-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .start-button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">RobotX</div>
+      <ul>
+        <li><a href="profil.html">Профиль</a></li>
+        <li><a href="simulator.html">Старт</a></li>
+        <li><a href="projects.html">Менің жобаларым</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>RobotX - Робототехникаға оқытатын виртуалды лаборатория</h1>
+
+    <div class="frame">
+      <div class="frame-text">
+        <img src="icons8-coding-50.png" alt="Блоктық бағдарламалау">
+        <h2>Блоктық бағдарламалау</h2>
+        <a href="https://developers.google.com/blockly?hl=ru" class="advantage-link">Көбірек..</a>
+      </div>
+      <div class="frame-text">
+        <img src="icons8-test-folder-50.png" alt="Виртуалды лаборатория">
+        <h2>Виртуалды лаборатория</h2>
+        <a href="https://phet.colorado.edu/" class="advantage-link">Көбірек..</a>
+      </div>
+      <div class="frame-text">
+        <img src="icons8-ok-80.png" alt="Қолжетімді">
+        <h2>Икемді және қолжетімді</h2>
+        <a href="https://satu.kz/p106493597-lego-mindstorms-education.html?&primelead=MTU" class="advantage-link">Көбірек..</a>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="button-wrapper">
+        <button class="start-button"><a href="simulator.html">Старт</a></button>
+        <h2 class="start-text">Робототехникаға сапарыңды RobotX-пен баста!</h2>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

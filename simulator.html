@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RobotX</title>
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <script src="https://unpkg.com/blockly/blocks/colour.js"></script>
+  <script src="https://unpkg.com/blockly/blocks/lists.js"></script>
+  <script src="https://unpkg.com/blockly/blocks/loops.js"></script>
+  <script src="https://unpkg.com/blockly/blocks/math.js"></script>
+  <script src="https://unpkg.com/blockly/blocks/text.js"></script>
+  <script src="https://unpkg.com/blockly/generators/javascript.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #container {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+    }
+    #blocklyDiv {
+      flex: 1;
+      
+    }
+    #buttonsContainer {
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+    }
+    #runButton, #resetButton {
+      background-color: blue;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin-top: auto;
+      margin-right: 20px;
+      border-radius: 20px;
+      position: fixed;
+      bottom: 10px;
+      right: 50px;
+    }
+    #runButton {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    #resetButton {
+        bottom: 10px;
+        right: 100px;
+    }
+    #runButton:hover,  #resetButton:hover  {
+      background-color: darkblue;
+    }
+    #maze {
+      flex: 1;
+      border: 1px solid black;
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      height: 87%;
+      
+    }
+    .tile {
+      border: 1px solid gray;
+      box-sizing: border-box;
+      height: 100%;
+    }
+    .robot {
+      background-image: url("https://cdn2.iconfinder.com/data/icons/cute-robot-3/512/937-23-128.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transition: transform 0.5s;
+    }
+    .green {
+      background-color: green;
+    }
+  </style>
+</head>
+<body onload="init()">
+  <div id="container">
+    <div id="blocklyDiv">
+        <div id="buttonsContainer">
+            <button id="runButton">Старт</button>
+            <button id="resetButton">Қалпына келтіру</button>
+        </div>        
+    </div>
+    <div id="maze"></div>  
+  </div>
+  
+  <script>
+    var workspace;
+    var maze;
+    var robotPosition;
+
+    function init() {
+      var blocklyDiv = document.getElementById("blocklyDiv");
+      workspace = Blockly.inject(blocklyDiv, {
+        toolbox: getToolboxXML(),
+      });
+
+      createMaze();
+      createRobot();
+
+      document.getElementById("runButton").addEventListener("click", runCode);
+      var resetButton = document.getElementById("resetButton");
+      resetButton.addEventListener("click", reset);
+    }
+
+    function getToolboxXML() {
+      var toolboxXML = `
+        <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+          <category name="Іс-қимыл">
+            <block type="maze_moveForward"></block>
+            <block type="maze_moveLeft"></block>
+            <block type="maze_moveRight"></block>
+            <block type="maze_moveUp"></block>
+          </category>
+          <category name="Математика">
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+            <block type="math_random_int"></block>
+          </category>
+          <category name="Цикл">
+            <block type="controls_repeat_ext"></block>
+            <block type="controls_whileUntil"></block>
+          </category>
+          <category name="Логика">
+            <block type="logic_compare"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_boolean"></block>
+          </category>
+        </xml>
+      `;
+
+      return toolboxXML;
+    }
+
+    function createMaze() {
+      var mazeElement = document.getElementById("maze");
+
+      for (var i = 0; i < 100; i++) {
+        var tile = document.createElement("div");
+        tile.className = "tile";
+        mazeElement.appendChild(tile);
+      }
+    }
+
+    function createRobot() {
+      maze = document.getElementById("maze");
+      robotPosition = { x: 0, y: 0 };
+
+      var robotTile = maze.children[0];
+      robotTile.className += " robot";
+    }
+
+    function runCode() {
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      eval(code);
+    }
+    
+    function reset() {
+      var tiles = document.getElementsByClassName("tile");
+      for (var i = 0; i < tiles.length; i++) {
+        tiles[i].className = "tile";
+        tiles[i].style.backgroundColor = "";
+        tiles[i].style.backgroundImage = "";
+      }
+
+      robotPosition = { x: 0, y: 0 };
+
+      var initialTile = maze.children[0];
+      initialTile.className = "tile robot";
+      initialTile.style.backgroundImage = "url('https://cdn2.iconfinder.com/data/icons/cute-robot-3/512/937-23-128.png')";
+   
+    }
+
+    Blockly.Blocks["maze_moveForward"] = {
+      init: function () {
+        this.appendDummyInput().appendField("Алға жылжу");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(160);
+        this.setTooltip("");
+        this.setHelpUrl("");
+      },
+    };
+
+    Blockly.JavaScript["maze_moveForward"] = function (block) {
+      return "moveForward();\n";
+    };
+
+    Blockly.Blocks["maze_moveLeft"] = {
+      init: function () {
+        this.appendDummyInput().appendField("Солға жылжу");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(160);
+        this.setTooltip("");
+        this.setHelpUrl("");
+      },
+    };
+
+    Blockly.JavaScript["maze_moveLeft"] = function (block) {
+      return "moveLeft();\n";
+    };
+
+    Blockly.Blocks["maze_moveRight"] = {
+      init: function () {
+        this.appendDummyInput().appendField("Оңға жылжу");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(160);
+        this.setTooltip("");
+        this.setHelpUrl("");
+      },
+    };
+
+    Blockly.JavaScript["maze_moveRight"] = function (block) {
+      return "moveRight();\n";
+    };
+
+    Blockly.Blocks["maze_moveUp"] = {
+      init: function () {
+        this.appendDummyInput().appendField("Үстіге жылжу");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(160);
+        this.setTooltip("");
+        this.setHelpUrl("");
+      },
+    };
+
+    Blockly.JavaScript["maze_moveUp"] = function (block) {
+      return "moveUp();\n";
+    };
+
+    function moveForward() {
+      var currentTile = maze.children[robotPosition.y * 10 + robotPosition.x];
+      currentTile.style.backgroundColor = "green";
+      currentTile.style.transition = "background-color 0.5s ease-in-out";
+
+      if (robotPosition.y < 9) {
+        robotPosition.y++;
+      }
+
+      setTimeout(function () {
+        var newTile = maze.children[robotPosition.y * 10 + robotPosition.x];
+        newTile.className = "tile robot";
+        newTile.style.backgroundImage = "url('https://cdn2.iconfinder.com/data/icons/cute-robot-3/512/937-23-128.png')";
+        newTile.style.transition = "background-color 0.5s ease-in-out";
+        newTile.style.backgroundColor = "green";
+        currentTile.style.backgroundColor = "";
+        currentTile.className = "tile";
+        currentTile.style.backgroundImage = "";
+      }, 500);
+    }
+
+    function moveRight() {
+      var currentTile = maze.children[robotPosition.y * 10 + robotPosition.x];
+      currentTile.style.backgroundColor = "green";
+      currentTile.style.transition = "background-color 0.5s ease-in-out";
+
+      if (robotPosition.x < 9) {
+        robotPosition.x++;
+      }
+
+      setTimeout(function () {
+        var newTile = maze.children[robotPosition.y * 10 + robotPosition.x];
+        newTile.className = "tile robot";
+        newTile.style.backgroundImage = "url('https://cdn2.iconfinder.com/data/icons/cute-robot-3/512/937-23-128.png')";
+        newTile.style.transition = "background-color 0.5s ease-in-out";
+        newTile.style.backgroundColor = "green";
+        currentTile.style.backgroundColor = "";
+        currentTile.className = "tile";
+        currentTile.style.backgroundImage = "";
+      }, 500);
+    }
+
+    function moveUp() {
+      var currentTile = maze.children[robotPosition.y * 10 + robotPosition.x];
+      currentTile.style.backgroundColor = "green";
+      currentTile.style.transition = "background-color 0.5s ease-in-out";
+
+      if (robotPosition.y > 0) {
+        robotPosition.y--;
+      }
+
+      setTimeout(function () {
+        var newTile = maze.children[robotPosition.y * 10 + robotPosition.x];
+        newTile.className = "tile robot";
+        newTile.style.backgroundImage = "url('https://cdn2.iconfinder.com/data/icons/cute-robot-3/512/937-23-128.png')";
+        newTile.style.transition = "background-color 0.5s ease-in-out";
+        newTile.style.backgroundColor = "green";
+        currentTile.style.backgroundColor = "";
+        currentTile.className = "tile";
+        currentTile.style.backgroundImage = "";
+      }, 500);
+    }
+
+    function moveLeft() {
+      var currentTile = maze.children[robotPosition.y * 10 + robotPosition.x];
+      currentTile.style.backgroundColor = "green";
+      currentTile.style.transition = "background-color 0.5s ease-in-out";
+
+      if (robotPosition.x > 0) {
+        robotPosition.x--;
+      }
+
+      setTimeout(function () {
+        var newTile = maze.children[robotPosition.y * 10 + robotPosition.x];
+        newTile.className = "tile robot";
+        newTile.style.backgroundImage = "url('https://cdn2.iconfinder.com/data/icons/cute-robot-3/512/937-23-128.png')";
+        newTile.style.transition = "background-color 0.5s ease-in-out";
+        newTile.style.backgroundColor = "green";
+        currentTile.style.backgroundColor = "";
+        currentTile.className = "tile";
+        currentTile.style.backgroundImage = "";
+      }, 500);
+    }
+  </script>
+</body>
+</html>
